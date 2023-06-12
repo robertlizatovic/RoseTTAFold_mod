@@ -55,7 +55,11 @@ tar xfz pdb100_2021Mar03.tar.gz
 # for CASP14 benchmarks, we used this one: https://files.ipd.uw.edu/pub/RoseTTAFold/pdb100_2020Mar11.tar.gz
 ```
 
-6. Obtain a [PyRosetta licence](https://els2.comotion.uw.edu/product/pyrosetta) and install the package in the newly created `folding` conda environment ([link](http://www.pyrosetta.org/downloads)).
+6. Obtain a [PyRosetta licence](https://els2.comotion.uw.edu/product/pyrosetta) and install the specified package version in the newly created `folding` conda environment ([link](http://www.pyrosetta.org/downloads)).
+```
+conda activate folding
+conda install pyrosetta=2021.38+release.4d5a969
+```
 
 ## Usage
 
