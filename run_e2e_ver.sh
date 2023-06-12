@@ -64,7 +64,7 @@ fi
 ############################################################
 # 4. end-to-end prediction
 ############################################################
-if [ ! -s $WDIR/t000_.3track.npz ]
+if [ ! -s $WDIR/t000_.e2e.pdb ]
 then
     echo "Running end-to-end prediction"
     python $PIPEDIR/network/predict_e2e.py \
@@ -74,5 +74,20 @@ then
         --hhr $WDIR/t000_.hhr \
         --atab $WDIR/t000_.atab \
         --db $DB 1> $WDIR/log/network.stdout 2> $WDIR/log/network.stderr
+fi
+
+
+############################################################
+# 5. build side-chains by running FastRelax
+############################################################
+if [ ! -s $WDIR/t000_.e2e_relaxed.pdb ]
+then
+    echo "Running fast relax"
+    conda activate folding
+    python $PIPEDIR/folding/postprocess_structure.py \
+        -i $WDIR/t000_.e2e.pdb \
+        -o $WDIR/t000_.e2e_relaxed.pdb \
+        -p $CPU \
+        -n 10 1> $WDIR/log/postprocess.stdout 2> $WDIR/log/postprocess.stderr
 fi
 echo "Done"
