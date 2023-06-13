@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH -p q_mig
+#SBATCH -p q_cgpu
 #SBATCH -N 1
 #SBATCH -G 1
 #SBATCH -n 10
@@ -45,6 +45,7 @@ LEN=`tail -n1 $IN | wc -m`
 mkdir -p $WDIR/log
 
 source /data/users/rolz/anaconda3/bin/activate /data/users/rolz/anaconda3/envs/RoseTTAFold
+conda activate RoseTTAFold
 ############################################################
 # 1. generate MSAs
 ############################################################
